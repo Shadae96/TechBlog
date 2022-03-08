@@ -16,10 +16,18 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    first_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+        last_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+        user_name: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -56,3 +64,5 @@ User.init(
 );
 
 module.exports = User;
+
+// This file is all set
