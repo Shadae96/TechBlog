@@ -1,0 +1,77 @@
+<div class="registrationbody" id="registrationbody">
+
+  <div class="container" id="registerMainContainer">
+    <h1> Sign Up Today!</h1>
+    <!-- Form -->
+    <!-- Can override the html validation by adding novalidate as an attribute to the form tag -->
+    <form id="form">
+      <!--Full Name -->
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Full Name" name="name"
+          required minlength="3" maxlength="100">
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone" id="registrationLabel">Phone Number:</label>
+        <input type="tel" id="phone" placeholder="555-555-5555" name="phone"
+        required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+      </div>
+
+      <!-- Email Address -->
+      <div class="form-group">
+        <label for="email" id="registrationLabel">Email Address</label>
+        <input type="email" id="email" placeholder="myname@gmail.com" name="email"
+        required>
+      </div>
+
+      <!-- Age -->
+      <div class="form-group">
+        <label for="age" id="registrationLabel">Age</label>
+        <input type="number" id="age" placeholder="21" name="age"
+        required minlength="2" maxlength="3">
+      </div>
+
+      <!-- Weight -->
+      <div class="form-group">
+        <label for="weight" id="registrationLabel">Weight</label>
+        <input type="number" id="weight" placeholder="170" name="weight"
+        required minlength="2" maxlength="3">
+      </div>
+
+      <!-- Height -->
+      <div class="form-group">
+        <label for="height" id="registrationLabel">Height(cm)</label>
+        <input type="number" id="height" placeholder="165" name="height"
+        required minlength="2" maxlength="3">
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password1" id="registrationLabel">Password</label>
+        <input type="password" id="password1" placeholder="Create Password (Min. 8 characters)"
+        required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number.">
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="password2" id="registrationLabel">Confirm Password</label>
+        <input type="password" id="password2" placeholder="Confirm Password" name="password"
+        required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+      </div>
+      <button type="submit" id="register">Register</button>
+    </form>
+
+    <!-- Error/Success Message -->
+    <div class="message-container">
+      <h3 id="message">Don't Hesistate!</h3>
+    </div>
+  </div>
+  </div>
+  <script src="/js/register.js"></script>
+   <style>
+  body{
+    background-color: #24504c;
+  }
+</style>
