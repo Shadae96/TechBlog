@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Post, User, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+const { beforeFindAfterExpandIncludeAll } = require('../models/User');
+const withAuth = require('../../utils/auth');
 
 
 // Get login
@@ -99,14 +100,40 @@ router.get ('/dashboard', async (req,res) => {
     return
   }
   try{
-    const post = await Post.findAll({
+    const posts = await Post.findAll({
       where: {
         user_id: req.session.user_id
       },
       raw: true
     })
 
+    if (posts.length > 0) {
+      posts.reverse()
+    }
+    else {
+      const posts = {none:true}
+    }
+    res.render('dashboard', {posts, logged_in: !req.session.logged_in})
+  } catch(err){
+    res.status(400).json({message: 'not logged in'})
   }
 })
 
+// Load Creat Account Page
+
+router.get('/create-account', async (req, res) => {
+  res.render ('createUser')
+});
+
+
+
+// Get new posts
+
+router.get ('/new-post',(req,res) => {
+  res.render('newPost',{logged_in: !req.session.logged_in})
+})
+
 module.exports = router;
+
+
+// This should be all set 

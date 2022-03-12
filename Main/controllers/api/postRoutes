@@ -1,17 +1,16 @@
 const express = require('express');
 const router = require('express').Router();
-const { Post} = require('../models/');
-const path = require('path');
-const withAuth = require('../utils/auth');
-const fs = require("fs");
-const http = require("http");
-const util = require("util");
+const { Post } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
 // get all blog posts --- works!
-router.get('/', withAuth, async (req, res) => {
+router.get('/new', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findAll()
+    var normalizedDate = new Date(Date.now()).toISOString();
+    const postData = await Post.create({
+
+    })
     const posts = blogData.map((post) => post.get({ plain: true }));
 
     res.render("post",
@@ -21,7 +20,7 @@ router.get('/', withAuth, async (req, res) => {
 
       })
       res.status(200).json(postData);
-      
+
   } catch (err) {
     res.status(500).json(err);
   }
@@ -32,20 +31,17 @@ router.get('/', withAuth, async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const postData = await Post.create({
-      ...req.body,
-      title: req.body.title,
-      textarea: req.body.textarea
+        title: req.body.title,
+        description: req.body.description,
+        body: req.body.body,
+        date_created: normalizedDate,
+        user_id: req.session.user_id
     });
-    req.session.save(() => {
-      req.session.logged_in = true;
 
       res.status(200).json(postData);
-    });
   } catch (err) {
     res.status(500).json(err);
   }
-});
+})
 
-
-
-module.exports = router;
+module.exports = router
